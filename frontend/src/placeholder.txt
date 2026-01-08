@@ -1,0 +1,8 @@
+Frontend source code will be implemented in Phase 3.
+
+Planned stack:
+- JavaScript / TypeScript
+- Stellar wallet integration
+- Soroban RPC calls
+
+This file exists to reserve the frontend structure.
