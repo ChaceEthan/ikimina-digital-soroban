@@ -8,5 +8,5 @@ soroban-sdk = "0.6.0"
 
 [lib]
 name = "ikimina"
-path = "src/libs.rs"
+path = "src/lib.rs"
 crate-type = ["cdylib"]
