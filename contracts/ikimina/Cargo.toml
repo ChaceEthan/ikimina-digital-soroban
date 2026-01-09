@@ -3,10 +3,10 @@ name = "ikimina"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-soroban-sdk = "0.6.0"
-
 [lib]
 name = "ikimina"
 path = "src/lib.rs"
 crate-type = ["cdylib"]
+
+[dependencies]
+soroban-sdk = { version = "23.0.0-rc.3" }
