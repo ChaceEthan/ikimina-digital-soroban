@@ -1,31 +1,22 @@
 #![no_std]
 
 use soroban_sdk::{
-    contract,
-    contractimpl,
-    contracttype,
-    symbol_short,
-    Address,
-    Env,
-    Symbol,
-    Vec,
+    contract, contractimpl, contracttype, Address, Env, Symbol, Vec,
 };
 
 // -----------------------------
 // Storage Keys
 // -----------------------------
-
 #[contracttype]
 pub enum DataKey {
-    Group(u64),              // Stores IkiminaGroup by group_id
-    GroupCount,              // Total number of groups
-    GroupMembers(u64),       // Members of a group
+    Group(u64),        // Stores IkiminaGroup by group_id
+    GroupCount,        // Total number of groups
+    GroupMembers(u64), // Stores members for each group
 }
 
 // -----------------------------
 // Member Structure
 // -----------------------------
-
 #[contracttype]
 pub struct Member {
     pub address: Address,
@@ -35,7 +26,6 @@ pub struct Member {
 // -----------------------------
 // Ikimina Group Structure
 // -----------------------------
-
 #[contracttype]
 pub struct IkiminaGroup {
     pub group_id: u64,
@@ -55,32 +45,26 @@ pub struct IkiminaGroup {
 // -----------------------------
 // Contract Definition
 // -----------------------------
-
 #[contract]
 pub struct IkiminaContract;
 
 // -----------------------------
 // Contract Implementation
 // -----------------------------
-
 #[contractimpl]
 impl IkiminaContract {
-    /// Initialize global group counter (called once)
+    /// Initialize global group counter
     pub fn init(env: Env) {
-        if env.storage().instance().has(&DataKey::GroupCount) {
+        let storage = env.storage().instance();
+        if storage.has(&DataKey::GroupCount) {
             panic!("Contract already initialized");
         }
 
-        env.storage()
-            .instance()
-            .set(&DataKey::GroupCount, &0u64);
+        storage.set(&DataKey::GroupCount, &0u64);
     }
 
-    /// Get total number of groups created
+    /// Get total number of groups
     pub fn get_group_count(env: Env) -> u64 {
-        env.storage()
-            .instance()
-            .get(&DataKey::GroupCount)
-            .unwrap_or(0u64)
+        env.storage().instance().get(&DataKey::GroupCount).unwrap_or(0u64)
     }
 }
