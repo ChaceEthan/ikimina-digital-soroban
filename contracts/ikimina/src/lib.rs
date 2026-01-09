@@ -1,13 +1,10 @@
 #![no_std]
-
-use soroban_sdk::{contract, contractimpl, Env};
-
-#[contract]
+use soroban_sdk::{contractimpl, Env};
 pub struct IkiminaContract;
-
 #[contractimpl]
 impl IkiminaContract {
-    pub fn hello(env: Env) -> u32 {
-        env.ledger().sequence()
+    // Example function
+    pub fn hello(env: Env) -> String {
+        "Hello Ikimina Digital!".to_string()
     }
 }
